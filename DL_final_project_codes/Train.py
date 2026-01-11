@@ -14,7 +14,8 @@ from utils.VFL_GIoU_Loss import FCOSLoss_V2
 BATCH_SIZE = 16
 LEARNING_RATE = 3e-4 
 EPOCHS = 100
-SWITCH_EPOCH = 30   
+SWITCH_EPOCH = 30
+FT_EPOCHS = 30
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 SAVE_DIR = './checkpoints'
 # --------------------------
@@ -126,9 +127,7 @@ def train():
             print(f">> {best_epoch} - Best model saved!")
             
     print("\n" + "="*50)
-    
-    FT_EPOCHS = 30
-    
+       
     print(f"Phase 3: Fine-tuning with SGD & Basic Data (Epoch {EPOCHS+1} ~ {EPOCHS + FT_EPOCHS})")
     print("Loading Best Model to refine...")
     
